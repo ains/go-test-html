@@ -2,7 +2,7 @@
 
 Converts `go test` output into a prettified HTML summary.
 
-![Example HTML output](https://cloud.githubusercontent.com/assets/2838283/18609750/e5e26020-7d01-11e6-85c7-b907da65afee.png)
+![Example HTML output](https://cloud.githubusercontent.com/assets/2838283/18885683/8f53b7fa-84e4-11e6-9ca8-f5e3101acf98.png)
 
 ## Installation
 
