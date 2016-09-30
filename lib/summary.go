@@ -49,9 +49,8 @@ func Parse(r io.Reader) (*TestSummary, error) {
 		for _, t := range pkg.Tests {
 			key, _ := jsonTestKeys[t.Result]
 
-			className := classNameFromPackageName(pkg.Name)
 			jsonTest := &Test{
-				Name:   fmt.Sprintf("%s/%s", className, t.Name),
+				Name:   fmt.Sprintf("%s/%s", pkg.Name, t.Name),
 				Time:   t.Time,
 				Output: strings.Join(t.Output, "\n"),
 			}
@@ -67,13 +66,4 @@ func Parse(r io.Reader) (*TestSummary, error) {
 	}
 
 	return summary, nil
-}
-
-func classNameFromPackageName(packageName string) string {
-	className := packageName
-	if idx := strings.LastIndex(className, "/"); idx > -1 && idx < len(packageName) {
-		className = packageName[idx + 1:]
-	}
-
-	return className
 }
