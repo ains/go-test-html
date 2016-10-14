@@ -1,0 +1,6 @@
+=== RUN   TestGenManDoc
+--- FAIL: TestGenManDoc (0.00s)
+	cmd_test.go:144: Line: 59 Unexpected response.
+FAIL
+exit status 1
+FAIL	cobra/doc	0.003s

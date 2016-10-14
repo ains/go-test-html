@@ -1,0 +1,8 @@
+=== RUN   TestBashCompletions
+--- PASS: TestBashCompletions (0.01s)
+=== RUN   TestBashCompletionHiddenFlag
+--- PASS: TestBashCompletionHiddenFlag (0.00s)
+=== RUN   TestBashCompletionDeprecatedFlag
+--- PASS: TestBashCompletionDeprecatedFlag (0.00s)
+PASS
+ok  	cobra/doc	0.005s
