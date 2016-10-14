@@ -5,6 +5,7 @@ import (
 	"github.com/jstemmer/go-junit-report/parser"
 	"io"
 	"strings"
+	"io/ioutil"
 )
 
 type Results map[string][]*Test
@@ -28,18 +29,19 @@ type Test struct {
 }
 
 type TestSummary struct {
-	TotalTests int     `json:"total_tests"`
-	Results    Results `json:"results"`
+	TotalTests  int      `json:"total_tests"`
+	BuildErrors string   `json:"build_errors"`
+	Results     Results  `json:"results"`
 }
 
-func Parse(r io.Reader) (*TestSummary, error) {
+func Parse(stdoutReader io.Reader, stdErrReader io.Reader) (*TestSummary, error) {
 	results := Results{
 		PASS: []*Test{},
 		FAIL: []*Test{},
 		SKIP: []*Test{},
 	}
 
-	res, err := parser.Parse(r, "")
+	res, err := parser.Parse(stdoutReader, "")
 	if err != nil {
 		return nil, err
 	}
@@ -60,9 +62,15 @@ func Parse(r io.Reader) (*TestSummary, error) {
 		}
 	}
 
+	buildErrorBytes, err := ioutil.ReadAll(stdErrReader)
+	if err != nil {
+		return nil, err
+	}
+
 	summary := &TestSummary{
 		TotalTests: totalTests,
 		Results:    results,
+		BuildErrors: string(buildErrorBytes),
 	}
 
 	return summary, nil
