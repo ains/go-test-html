@@ -34,7 +34,7 @@ type TestSummary struct {
 	Results     Results  `json:"results"`
 }
 
-func Parse(stdoutReader io.Reader, stdErrReader io.Reader) (*TestSummary, error) {
+func Parse(stdoutReader io.Reader, stderrReader io.Reader) (*TestSummary, error) {
 	results := Results{
 		PASS: []*Test{},
 		FAIL: []*Test{},
@@ -62,7 +62,7 @@ func Parse(stdoutReader io.Reader, stdErrReader io.Reader) (*TestSummary, error)
 		}
 	}
 
-	buildErrorBytes, err := ioutil.ReadAll(stdErrReader)
+	buildErrorBytes, err := ioutil.ReadAll(stderrReader)
 	if err != nil {
 		return nil, err
 	}

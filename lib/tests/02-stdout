@@ -1,0 +1,11 @@
+=== RUN   TestGenManDoc
+--- FAIL: TestGenManDoc (0.00s)
+	cmd_test.go:144: Line: 59 Unexpected response.
+=== RUN   TestGenManNoGenTag
+--- PASS: TestGenManNoGenTag (0.00s)
+=== RUN   TestGenMdNoTag
+--- SKIP: TestGenMdNoTag (0.00s)
+	md_docs_test.go:72: yolo
+FAIL
+exit status 1
+FAIL	cobra/doc	0.003s
