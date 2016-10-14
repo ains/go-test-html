@@ -1,4 +1,5 @@
 # go-test-html
+[![Build Status](https://travis-ci.org/ains/go-test-html.svg?branch=master)](https://travis-ci.org/ains/go-test-html)
 
 Converts `go test` output into a prettified HTML summary.
 
