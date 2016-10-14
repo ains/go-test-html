@@ -2,7 +2,7 @@ package lib
 
 import (
 	"fmt"
-	"github.com/jstemmer/go-junit-report/parser"
+	"github.com/improbable-io/go-junit-report/parser"
 	"io"
 	"strings"
 	"io/ioutil"
