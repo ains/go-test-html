@@ -10,14 +10,14 @@ type templateData struct {
 	Summary     *TestSummary
 }
 
-func GenerateHTML(templateStr string, summary *TestSummary, buildErrors string) (string, error) {
+func GenerateHTML(templateStr string, summary *TestSummary) (string, error) {
 	t, err := template.New("webpage").Parse(templateStr)
 	if err != nil {
 		return "", err
 	}
 
 	buf := bytes.Buffer{}
-	err = t.Execute(&buf, &templateData{Summary: summary, BuildErrors: buildErrors})
+	err = t.Execute(&buf, &templateData{Summary: summary})
 	if err != nil {
 		return "", err
 	}

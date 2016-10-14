@@ -30,14 +30,15 @@ func main() {
 
 	gotestStdout, err := os.Open(gotestStdoutFile)
 	check(err)
-	summary, err := lib.Parse(gotestStdout)
+
+	gotestStderr, err := os.Open(gotestStderrFile)
 	check(err)
 
-	gotestStderr, err := ioutil.ReadFile(gotestStderrFile)
+	summary, err := lib.Parse(gotestStdout, gotestStderr)
 	check(err)
 
 	templateBox := rice.MustFindBox("template")
-	html, err := lib.GenerateHTML(templateBox.MustString("template.html"), summary, string(gotestStderr))
+	html, err := lib.GenerateHTML(templateBox.MustString("template.html"), summary)
 	check(err)
 
 	err = ioutil.WriteFile(outputFile, []byte(html), 0644)
