@@ -203,13 +203,22 @@
         .test-section-header {
             cursor: pointer;
         }
-        
+
         pre {
             white-space: pre-wrap;       /* css-3 */
             white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
             white-space: -pre-wrap;      /* Opera 4-6 */
             white-space: -o-pre-wrap;    /* Opera 7 */
             word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            padding: 5px;
+        }
+
+        .local-run {
+            font-family: monospace;
+            margin-top: 5px;
+            width: 100%;
+            border: none;
+            padding: 5px;
         }
     </style>
 </head>
@@ -246,8 +255,11 @@
                     <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing test-results">
                         {{range .Summary.Results.fail}}
                         <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>{{ .Name }} ({{ .Time }}ms)</h5>
+                            <h5>{{ .PackageName }}/{{ .TestName }} ({{ .Time }}ms)</h5>
+
+                            <input class="mdl-color--grey-600 mdl-color-text--white local-run" value="go test -v {{ .PackageName }} -run ^{{ .TestName }}$"/>
                             <pre>{{ .Output }}</pre>
+
                         </div>
                         {{end}}
                     </div>
@@ -265,7 +277,7 @@
                     <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing test-results">
                         {{range .Summary.Results.pass}}
                         <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>{{ .Name }} ({{ .Time }}ms)</h5>
+                            <h5>{{ .PackageName }}/{{ .TestName }} ({{ .Time }}ms)</h5>
                             <pre>{{ .Output }}</pre>
                         </div>
                         {{end}}
@@ -284,7 +296,7 @@
                     <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing test-results">
                         {{range .Summary.Results.skip}}
                         <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>{{ .Name }} ({{ .Time }}ms)</h5>
+                            <h5>{{ .PackageName }}/{{ .TestName }} ({{ .Time }}ms)</h5>
                             <pre>{{ .Output }}</pre>
                         </div>
                         {{end}}
@@ -292,16 +304,40 @@
                 </div>
             </section>
             {{end}}
+
         </div>
+
     </main>
+    <div class="mdl-js-snackbar mdl-snackbar copy-success" data-upgraded=",MaterialSnackbar">
+        <div class="mdl-snackbar__text">Copied to clipboard</div>
+    </div>
 </div>
 <script type="text/javascript">
-    var deleteLinks = document.querySelectorAll('.test-section-header');
+    var headers = document.querySelectorAll('.test-section-header');
 
-    Array.from(deleteLinks).forEach(function (link) {
+    Array.from(headers).forEach(function (link) {
         link.addEventListener('click', function (_) {
             link.parentNode.classList.toggle('hidden-section');
         });
+    });
+
+    var localRunText = document.querySelector('.local-run');
+
+    localRunText.addEventListener('click', function(event) {
+        this.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            if (successful) {
+                var copySuccess = document.querySelector('.copy-success');
+                copySuccess.classList.add('mdl-snackbar--active');
+                setTimeout(function() {
+                    copySuccess.classList.remove('mdl-snackbar--active');
+                }, 1500);
+            }
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
     });
 </script>
 </body>

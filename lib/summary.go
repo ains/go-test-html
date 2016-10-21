@@ -1,10 +1,10 @@
 package lib
 
 import (
-	"fmt"
-	"github.com/improbable-io/go-junit-report/parser"
 	"io"
 	"strings"
+	"github.com/improbable-io/go-junit-report/parser"
+
 	"io/ioutil"
 )
 
@@ -23,9 +23,10 @@ var jsonTestKeys = map[parser.Result]string{
 }
 
 type Test struct {
-	Name   string `json:"name"`
-	Time   int    `json:"time"`
-	Output string `json:"output"`
+	PackageName string `json:"package_name"`
+	TestName    string `json:"test_name"`
+	Time        int    `json:"time"`
+	Output      string `json:"output"`
 }
 
 type TestSummary struct {
@@ -52,7 +53,8 @@ func Parse(stdoutReader io.Reader, stderrReader io.Reader) (*TestSummary, error)
 			key, _ := jsonTestKeys[t.Result]
 
 			jsonTest := &Test{
-				Name:   fmt.Sprintf("%s/%s", pkg.Name, t.Name),
+				PackageName:   pkg.Name,
+				TestName: t.Name,
 				Time:   t.Time,
 				Output: strings.Join(t.Output, "\n"),
 			}
