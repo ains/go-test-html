@@ -1,8 +1,9 @@
 package lib
 
 import (
-	"testing"
 	"os"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -18,27 +19,27 @@ var testCases = []TestCase{
 		stdOutFile: "01-stdout",
 		stdErrFile: "01-stderr",
 		summary: &TestSummary{
-			TotalTests: 3,
+			TotalTests:  3,
 			BuildErrors: "",
 			Results: Results{
 				PASS: []*Test{
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestBashCompletions",
-						Time: 10,
-						Output: "",
+						PackageName: "cobra/doc",
+						TestName:    "TestBashCompletions",
+						Time:        10,
+						Output:      "",
 					},
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestBashCompletionHiddenFlag",
-						Time: 0,
-						Output: "",
+						PackageName: "cobra/doc",
+						TestName:    "TestBashCompletionHiddenFlag",
+						Time:        0,
+						Output:      "",
 					},
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestBashCompletionDeprecatedFlag",
-						Time: 0,
-						Output: "",
+						PackageName: "cobra/doc",
+						TestName:    "TestBashCompletionDeprecatedFlag",
+						Time:        0,
+						Output:      "",
 					},
 				},
 				FAIL: []*Test{},
@@ -50,31 +51,31 @@ var testCases = []TestCase{
 		stdOutFile: "02-stdout",
 		stdErrFile: "02-stderr",
 		summary: &TestSummary{
-			TotalTests: 3,
+			TotalTests:  3,
 			BuildErrors: "",
 			Results: Results{
 				PASS: []*Test{
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestGenManNoGenTag",
-						Time: 0,
-						Output: "",
+						PackageName: "cobra/doc",
+						TestName:    "TestGenManNoGenTag",
+						Time:        0,
+						Output:      "",
 					},
 				},
 				FAIL: []*Test{
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestGenManDoc",
-						Time: 0,
-						Output: "cmd_test.go:144: Line: 59 Unexpected response.",
+						PackageName: "cobra/doc",
+						TestName:    "TestGenManDoc",
+						Time:        0,
+						Output:      "cmd_test.go:144: Line: 59 Unexpected response.",
 					},
 				},
 				SKIP: []*Test{
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestGenMdNoTag",
-						Time: 0,
-						Output: "md_docs_test.go:72: yolo",
+						PackageName: "cobra/doc",
+						TestName:    "TestGenMdNoTag",
+						Time:        0,
+						Output:      "md_docs_test.go:72: yolo",
 					},
 				},
 			},
@@ -84,16 +85,16 @@ var testCases = []TestCase{
 		stdOutFile: "03-stdout",
 		stdErrFile: "03-stderr",
 		summary: &TestSummary{
-			TotalTests: 1,
+			TotalTests:  1,
 			BuildErrors: "build-error",
 			Results: Results{
 				PASS: []*Test{},
 				FAIL: []*Test{
 					{
-						PackageName:"cobra/doc",
-						TestName:"TestGenManDoc",
-						Time: 0,
-						Output: "cmd_test.go:144: Line: 59 Unexpected response.",
+						PackageName: "cobra/doc",
+						TestName:    "TestGenManDoc",
+						Time:        0,
+						Output:      "cmd_test.go:144: Line: 59 Unexpected response.",
 					},
 				},
 				SKIP: []*Test{},
