@@ -5,10 +5,11 @@ import (
 	"log"
 	"os"
 
-	"github.com/GeertJohan/go.rice"
-	"github.com/ains/go-test-html/lib"
 	"io/ioutil"
 	"path/filepath"
+
+	rice "github.com/GeertJohan/go.rice"
+	"github.com/ains/go-test-html/lib"
 )
 
 func check(err error) {

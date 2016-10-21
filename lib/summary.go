@@ -3,6 +3,7 @@ package lib
 import (
 	"io"
 	"strings"
+
 	"github.com/improbable-io/go-junit-report/parser"
 
 	"io/ioutil"
@@ -30,9 +31,9 @@ type Test struct {
 }
 
 type TestSummary struct {
-	TotalTests  int      `json:"total_tests"`
-	BuildErrors string   `json:"build_errors"`
-	Results     Results  `json:"results"`
+	TotalTests  int     `json:"total_tests"`
+	BuildErrors string  `json:"build_errors"`
+	Results     Results `json:"results"`
 }
 
 func Parse(stdoutReader io.Reader, stderrReader io.Reader) (*TestSummary, error) {
@@ -53,10 +54,10 @@ func Parse(stdoutReader io.Reader, stderrReader io.Reader) (*TestSummary, error)
 			key, _ := jsonTestKeys[t.Result]
 
 			jsonTest := &Test{
-				PackageName:   pkg.Name,
-				TestName: t.Name,
-				Time:   t.Time,
-				Output: strings.Join(t.Output, "\n"),
+				PackageName: pkg.Name,
+				TestName:    t.Name,
+				Time:        t.Time,
+				Output:      strings.Join(t.Output, "\n"),
 			}
 
 			results[key] = append(results[key], jsonTest)
@@ -70,8 +71,8 @@ func Parse(stdoutReader io.Reader, stderrReader io.Reader) (*TestSummary, error)
 	}
 
 	summary := &TestSummary{
-		TotalTests: totalTests,
-		Results:    results,
+		TotalTests:  totalTests,
+		Results:     results,
 		BuildErrors: string(buildErrorBytes),
 	}
 
