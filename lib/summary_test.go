@@ -23,17 +23,20 @@ var testCases = []TestCase{
 			Results: Results{
 				PASS: []*Test{
 					{
-						Name: "cobra/doc/TestBashCompletions",
+						PackageName:"cobra/doc",
+						TestName:"TestBashCompletions",
 						Time: 10,
 						Output: "",
 					},
 					{
-						Name: "cobra/doc/TestBashCompletionHiddenFlag",
+						PackageName:"cobra/doc",
+						TestName:"TestBashCompletionHiddenFlag",
 						Time: 0,
 						Output: "",
 					},
 					{
-						Name: "cobra/doc/TestBashCompletionDeprecatedFlag",
+						PackageName:"cobra/doc",
+						TestName:"TestBashCompletionDeprecatedFlag",
 						Time: 0,
 						Output: "",
 					},
@@ -52,21 +55,24 @@ var testCases = []TestCase{
 			Results: Results{
 				PASS: []*Test{
 					{
-						Name: "cobra/doc/TestGenManNoGenTag",
+						PackageName:"cobra/doc",
+						TestName:"TestGenManNoGenTag",
 						Time: 0,
 						Output: "",
 					},
 				},
 				FAIL: []*Test{
 					{
-						Name: "cobra/doc/TestGenManDoc",
+						PackageName:"cobra/doc",
+						TestName:"TestGenManDoc",
 						Time: 0,
 						Output: "cmd_test.go:144: Line: 59 Unexpected response.",
 					},
 				},
 				SKIP: []*Test{
 					{
-						Name: "cobra/doc/TestGenMdNoTag",
+						PackageName:"cobra/doc",
+						TestName:"TestGenMdNoTag",
 						Time: 0,
 						Output: "md_docs_test.go:72: yolo",
 					},
@@ -84,7 +90,8 @@ var testCases = []TestCase{
 				PASS: []*Test{},
 				FAIL: []*Test{
 					{
-						Name: "cobra/doc/TestGenManDoc",
+						PackageName:"cobra/doc",
+						TestName:"TestGenManDoc",
 						Time: 0,
 						Output: "cmd_test.go:144: Line: 59 Unexpected response.",
 					},
