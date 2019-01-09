@@ -4,7 +4,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/improbable-io/go-junit-report/parser"
+	"github.com/jstemmer/go-junit-report/parser"
 
 	"io/ioutil"
 )
